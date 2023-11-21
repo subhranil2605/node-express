@@ -11,8 +11,11 @@ const app = express();
 // app.delete();
 
 
-// Defining the port number
-const port = 3000;
+// Using environment variable
+const port = process.env.PORT || 3000;
+
+// set PORT = 5000 
+// export PORT = 5000
 
 // Route for '/'
 app.get('/', (req, res) => {
