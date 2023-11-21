@@ -11,6 +11,14 @@ const app = express();
 // app.delete();
 
 
+// A list of courses
+const courses = [
+    {id: 1, name: 'python'},
+    {id: 2, name: 'c++'},
+    {id: 3, name: 'react'},
+];
+
+
 // Using environment variable
 const port = process.env.PORT || 3000;
 
@@ -23,12 +31,22 @@ app.get('/', (req, res) => {
 });
 
 app.get('/api/courses', (req, res) => {
-    res.send([1, 2, 3]);
+    res.send(courses);
 })
 
 // Route parameter
-app.get('/api/courses/:year/:month', (req, res) => {
-    res.send(req.query);
+app.get('/api/courses/:id', (req, res) => {
+    const courseId = parseInt(req.params.id);
+
+    // Find the course with the same ID
+    let course = courses.find(c => c.id === courseId);
+
+    if (!course) { // Didn't find the course
+        // Raise an status with a message
+        res.status(404).send('<p>The course with the given ID was not found!!!</p>');
+    } else {
+        res.send(course);
+    }
 })
 
 // Start the server and make it listen on the specified port
