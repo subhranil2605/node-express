@@ -4,6 +4,9 @@ const express = require('express');
 // Create an instance of the Express application 
 const app = express();
 
+// Add json middleware to parse incoming requests with JSON payloads.
+app.use(express.json());
+
 // Different HTTP methods with express
 // app.get();
 // app.post();
@@ -48,6 +51,23 @@ app.get('/api/courses/:id', (req, res) => {
         res.send(course);
     }
 })
+
+// Handling a POST request
+app.post('/api/courses', (req, res) => {
+
+    // Create a new course with name from the client
+    const course = {
+        id: courses.length + 1,
+        name: req.body.name,
+    };
+
+    // Add the new course to the courses
+    courses.push(course);
+
+    // Sending back the course to the client
+    res.send(course);
+    console.log(courses);
+});
 
 // Start the server and make it listen on the specified port
 app.listen(port, () => {
