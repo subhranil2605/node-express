@@ -83,7 +83,7 @@ app.put('/api/courses/:id', (req, res) => {
     const course = courses.find(c => c.id === courseId);
 
     if (!course) {
-        res.status(404).send('Course with given ID was not found!');
+        return res.status(404).send('Course with given ID was not found!');
     }
 
     // Validate the course 
@@ -99,6 +99,21 @@ app.put('/api/courses/:id', (req, res) => {
     res.send(course);
 });
 
+
+// Delete
+app.delete('/api/courses/:id', (req, res) => {
+    const courseId = parseInt(req.params.id);
+    const course = courses.find(c => c.id === courseId);
+
+    if (!course) {
+        return res.status(404).send('Course with given ID was not found!');
+    }
+
+    const index = courses.indexOf(course);
+    courses.splice(index, 1);
+
+    res.send(course);
+});
 
 // Start the server and make it listen on the specified port
 app.listen(port, () => {
