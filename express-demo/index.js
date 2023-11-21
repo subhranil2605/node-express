@@ -27,9 +27,8 @@ app.get('/api/courses', (req, res) => {
 })
 
 // Route parameter
-app.get('/api/courses/:courseId', (req, res) => {
-    const courseId = req.params.courseId;   // Get the ID
-    res.send(courseId); // Send the data
+app.get('/api/courses/:year/:month', (req, res) => {
+    res.send(req.params);
 })
 
 // Start the server and make it listen on the specified port
