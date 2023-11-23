@@ -1,5 +1,8 @@
 const logger = require('./logger');
 
+const helmet = require('helmet');
+const morgan = require('morgan');
+
 // import the 'express' module and create a variable
 const express = require('express');
 
@@ -22,6 +25,8 @@ app.use((req, res, next) => {
     next();
 });
 
+app.use(helmet());
+app.use(morgan('tiny'));
 
 // A list of courses
 const courses = [
