@@ -12,6 +12,9 @@ app.use(express.json());
 // Urlencoded middleware
 app.use(express.urlencoded({extended: true}));
 
+// static middleware
+app.use(express.static('public'));
+
 app.use(logger);
 
 app.use((req, res, next) => {
