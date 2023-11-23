@@ -9,6 +9,8 @@ const app = express();
 // Add json middleware to parse incoming requests with JSON payloads.
 app.use(express.json());
 
+// Urlencoded middleware
+app.use(express.urlencoded({extended: true}));
 
 app.use(logger);
 
