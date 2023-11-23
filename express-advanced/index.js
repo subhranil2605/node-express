@@ -9,6 +9,10 @@ const express = require('express');
 // Create an instance of the Express application 
 const app = express();
 
+
+console.log(`NODE_ENV: ${process.env.NODE_ENV}`);
+console.log(`app: ${app.get('env') }`);
+
 // Add json middleware to parse incoming requests with JSON payloads.
 app.use(express.json());
 
@@ -26,7 +30,12 @@ app.use((req, res, next) => {
 });
 
 app.use(helmet());
-app.use(morgan('tiny'));
+
+// Check if the environment is development then use morgan for logging
+if (app.get('env') === 'development') {
+    app.use(morgan('tiny'));
+    console.log('Morgan enabled.')
+}
 
 // A list of courses
 const courses = [
