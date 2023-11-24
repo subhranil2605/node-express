@@ -31,4 +31,21 @@ async function createCourse() {
     console.log(result);
 }
 
-createCourse();
+// createCourse();
+
+// Query
+async function getCourses() {
+    // Find all the documents
+    let courses = await Course.find();
+
+    // Find the documents using filter
+    let subhranilCourses = await Course
+        .find({ author: 'Subhranil', isPublished: true }) // find using different filters
+        .limit(1)   // How many documents you want to get
+        .sort({ name: -1 }) // sort 1: ascending, -1: descending
+        .select({name: 1, tags: 1});    // Only get the specified values
+
+    console.log(subhranilCourses);
+}
+
+getCourses();
