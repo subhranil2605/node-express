@@ -40,9 +40,17 @@ async function listCourses() {
     console.log(courses);
 }
 
-createCourse('Node Course', [
-    new Author({ name: 'Mosh' }),
-    new Author({ name: 'Subhranil' })
-]);
+async function addAuthor(courseId, author) {
+    const course = await Course.findById(courseId);
+    course.author.push(author);
+    course.save();
+}
+
+// createCourse('Node Course', [
+//     new Author({ name: 'Mosh' }),
+//     new Author({ name: 'Subhranil' })
+// ]);
 
 // updateCourse('656db8ed308759061161b795');
+
+addAuthor('656e003e103e8700a717e4d7', new Author({ name: 'Anish Naskar' }));
