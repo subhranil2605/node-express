@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const genreSchema = new mongoose.Schema(
+export const genreSchema = new mongoose.Schema(
     {
         name: {
             type: String,
