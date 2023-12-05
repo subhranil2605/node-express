@@ -1,11 +1,14 @@
 import express from "express";
 import mongoose from "mongoose";
+import Fawn from 'fawn';
 
 import { Rental, validateRental } from "../models/rental.js";
 import { Movie } from "../models/movie.js";
 import { Customer } from "../models/customer.js";
 
 export const rentalRouter = express.Router();
+
+// Fawn.init(mongoose);
 
 rentalRouter.get('/', async (req, res) => {
     const rentals = await Rental.find().sort('-dateOut');
